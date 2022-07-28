@@ -1,5 +1,5 @@
 # 🐌 snailshell
-A tiny library and [application ](#-snailshell-standalone)for animating text in the terminal. 
+A tiny library and [application ](#%EF%B8%8F-snailshell-standalone)for animating text in the terminal. 
 
 
 ![demo](demo.gif)
