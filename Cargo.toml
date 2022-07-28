@@ -1,0 +1,15 @@
+[package]
+name = "snailshell"
+version = "0.1.0"
+edition = "2021"
+description = "Library for making terminal text display with pleasant RPG-style animations."
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "snailshell"
+path = "src/bin/snailshell.rs"
+
+[dependencies]
+clap = {version="3.2.15", features=["derive"]}
