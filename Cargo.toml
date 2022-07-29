@@ -4,8 +4,11 @@ version = "0.1.0"
 edition = "2021"
 description = "Library for making terminal text display with pleasant RPG-style animations."
 license = "MIT"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+homepage = "https://github.com/ElfWitch/snailshell"
+repository = "https://github.com/ElfWitch/snailshell"
+keywords = ["terminal", "animation", "animated", "cli", "rpg", "text", "output"]
+categories = ["command-line-utilities", "command-line-interface"]
+exclude = ["demos/*"]
 
 [[bin]]
 name = "snailshell"
