@@ -45,7 +45,7 @@ set_snail_fps(30);
 ## 🐌🖥️ Snailshell Standalone:
 You can also use snailshell from the command line.
 
-![cli demo](demos/fun_stuff.gif)
+![cli demo](demos/cli_demo.gif)
 
 Useful for making shell scripts and videos!
 ### Installation:

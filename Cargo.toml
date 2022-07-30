@@ -1,12 +1,12 @@
 [package]
 name = "snailshell"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 description = "Library for making terminal text display with pleasant RPG-style animations."
 license = "MIT"
 homepage = "https://github.com/ElfWitch/snailshell"
 repository = "https://github.com/ElfWitch/snailshell"
-keywords = ["terminal", "animated", "cli", "rpg", "text"]
+keywords = ["terminal", "animation", "cli", "rpg", "text"]
 categories = ["command-line-utilities", "command-line-interface"]
 exclude = ["demos/*"]
 
