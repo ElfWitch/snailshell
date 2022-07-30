@@ -2,6 +2,7 @@
 [![MIT LICENSE](https://img.shields.io/crates/l/snailshell)](https://github.com/ElfWitch/snailshell/blob/main/LICENSE)
 [![VERSION](https://img.shields.io/crates/v/snailshell)](https://crates.io/crates/snailshell)
 [![DOCS](https://img.shields.io/docsrs/snailshell)](https://docs.rs/snailshell/latest/snailshell/)
+[![DOWNLOADS](https://img.shields.io/crates/d/snailshell)](https://crates.io/crates/snailshell)
 
 A tiny library and [application ](#%EF%B8%8F-snailshell-standalone)for animating text in the terminal. 
 
