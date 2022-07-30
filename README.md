@@ -4,14 +4,21 @@
 [![DOCS](https://img.shields.io/docsrs/snailshell)](https://docs.rs/snailshell/latest/snailshell/)
 [![DOWNLOADS](https://img.shields.io/crates/d/snailshell)](https://crates.io/crates/snailshell)
 
-A tiny library and [application ](#%EF%B8%8F-snailshell-standalone)for animating text in the terminal. 
+A tiny library and [application ](#%EF%B8%8F-snailshell-standalone)for animating text in the terminal.
 
-![demo](demos/demo.gif)
+🪄 It's so easy add some flair to your text RPGs or console programs. 🪄
+
+![demo](demos/fun_stuff.gif)
 
 ☝️ From [Fun Stuff example](examples/fun_stuff.rs).
 (obviously looks smoother in an actual terminal)
 
-Easily add some flair to your text RPGs or console programs.
+### Compatibility
+Compatible with EVERYTHING! 🥳
+
+Snailshell works with any type which implements `Display`, so literally everything that you would normally use with `print!()`, `println!()`, or `format!()` just works!
+This includes colored text from other libraries such as [Crossterm](https://github.com/crossterm-rs/crossterm).
+
 
 ### 👩‍🏫 Examples
 ___
@@ -38,7 +45,7 @@ set_snail_fps(30);
 ## 🐌🖥️ Snailshell Standalone:
 You can also use snailshell from the command line.
 
-![cli demo](demos/cli_demo.gif)
+![cli demo](demos/fun_stuff.gif)
 
 Useful for making shell scripts and videos!
 ### Installation:

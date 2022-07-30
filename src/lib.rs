@@ -1,7 +1,7 @@
 //! # snailshell
 //! Tiny library for making terminal text display with pleasant RPG-style animations.
 //!
-//! ### Examples
+//! ## Examples
 //! ```
 //! # use snailshell::*;
 //! // basic
@@ -12,6 +12,19 @@
 //! snailprint_s("This prints six characters per second", 6.0);
 //! ```
 //!
+//! ## Colored Text
+//! ```
+//! use snailshell::*;
+//!
+//! // use any library you like.
+//! // Snailshell works on any type that implements display.
+//! // That means any type which you can use print!(), println!(), or format!() with!
+//! use crossterm::style::Stylize;
+//!
+//! snailprint("flamingo, oh oh ou-oh".magenta());
+//!
+//! ```
+//!
 //! ### Refresh Rate
 //! You can change the refresh rate with [set_snail_fps].
 //! Call it once at the beginning of your program.
@@ -19,6 +32,7 @@
 //!
 //! Default fps is 60.
 
+use std::fmt::Display;
 use std::io::{stdout, Write};
 use std::thread::sleep;
 
@@ -45,7 +59,7 @@ pub fn set_snail_fps(fps: u8){
 /// # use snailshell::snailprint;
 /// snailprint("The simplest way to use snailshell");
 /// ```
-pub fn snailprint(text: &str){
+pub fn snailprint<T: Display>(text: T){
     snailprint_d(text, 2.0);
 }
 
@@ -57,8 +71,11 @@ pub fn snailprint(text: &str){
 /// snailprint_s("this will print one character per second", 1.0);
 /// snailprint_s("this will print 50 characters per second", 50.0);
 /// ```
-pub fn snailprint_s(text: &str, speed: f32){
-    snailprint_d(text, text.len() as f32 / speed);
+pub fn snailprint_s<T: Display>(text: T, speed: f32){
+    let s = format!("{}", text);
+
+    // duration is calculated from amount of ' ' whitespace in formatted text
+    snailprint_d(text, s.split(' ').count() as f32 / speed);
 }
 
 /// Animate text with custom fixed duration. If you are printing a message with 10 characters and
@@ -71,8 +88,10 @@ pub fn snailprint_s(text: &str, speed: f32){
 /// ```
 ///
 ///
-pub fn snailprint_d(text: &str, duration: f32){
-    let mut chars = text.chars().rev().collect::<Vec<char>>();
+pub fn snailprint_d<T: Display>(text: T, duration: f32){
+    let s = format!("{}", text);
+
+    let mut chars = s.chars().rev().collect::<Vec<char>>();
 
     let char_len = chars.len();
 
