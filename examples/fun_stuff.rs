@@ -61,13 +61,7 @@ pub fn clear_console(){
 
 /// print waiting dots
 fn dots(){
-    use std::io::{stdout, Write};
-
-    for _ in 0..3{
-        print!(".");
-        rest(0.5);
-        stdout().flush().unwrap();
-    }
+    snailprint_d("...", 1.5);
 }
 
 fn rest(secs: f32){
