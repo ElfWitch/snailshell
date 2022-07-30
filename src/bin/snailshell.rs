@@ -1,10 +1,11 @@
+use std::io::{Read, stdin};
 use clap::Parser;
 use snailshell::{set_snail_fps, snailprint_d, snailprint_s};
 
 #[derive(Parser)]
-struct CLI{
+struct Cli{
     /// Text you want to animate
-    text: String,
+    text: Option<String>,
 
     /// How long the text should animate for
     #[clap(short, long)]
@@ -19,9 +20,23 @@ struct CLI{
     fps: Option<u8>
 }
 
-fn main() {
+fn main(){
 
-    let args = CLI::parse();
+    let args = Cli::parse();
+
+    let text = {
+        if let Some(text) = args.text{
+            text
+        }else{
+            let mut s = String::new();
+
+            if stdin().lock().read_to_string(&mut s).is_err(){
+                println!("Input is not valid UTF-8. You may have passed contents of a binary file.")
+            }
+
+            s
+        }
+    };
 
     // fps
     if let Some(fps) = args.fps{
@@ -30,17 +45,17 @@ fn main() {
 
     // custom duration
     if let Some(duration) = args.duration{
-        snailprint_d(&args.text, duration);
+        snailprint_d(&text, duration);
     }
 
     // custom speed
     else if let Some(speed) = args.speed{
-        snailprint_s(&args.text, speed);
+        snailprint_s(&text, speed);
     }
 
     // default
     else{
-        snailprint_s(&args.text, 48.0);
+        snailprint_s(&text, 48.0);
     }
 
 }
