@@ -1,7 +1,6 @@
 # 🐌 snailshell
 A tiny library and [application ](#%EF%B8%8F-snailshell-standalone)for animating text in the terminal. 
 
-
 ![demo](demos/demo.gif)
 
 ☝️ From [Fun Stuff example](examples/fun_stuff.rs).
@@ -33,8 +32,10 @@ set_snail_fps(30);
 
 ## 🐌🖥️ Snailshell Standalone:
 You can also use snailshell from the command line.
+
 ![cli demo](demos/cli_demo.gif)
 
+Useful for making shell scripts and videos!
 ### Installation:
 `cargo install snailshell`
 
