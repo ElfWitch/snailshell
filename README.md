@@ -6,7 +6,7 @@
 
 A tiny library and [application ](#%EF%B8%8F-snailshell-standalone)for animating text in the terminal.
 
-🪄 It's so easy add some flair to your text RPGs or console programs. 🪄
+🪄 It's so easy to add some flair to your text RPGs or console programs. 🪄
 
 ![demo](demos/fun_stuff.gif)
 
