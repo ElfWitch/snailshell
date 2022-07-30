@@ -6,7 +6,7 @@ description = "Library for making terminal text display with pleasant RPG-style 
 license = "MIT"
 homepage = "https://github.com/ElfWitch/snailshell"
 repository = "https://github.com/ElfWitch/snailshell"
-keywords = ["terminal", "animation", "animated", "cli", "rpg", "text", "output"]
+keywords = ["terminal", "animated", "cli", "rpg", "text"]
 categories = ["command-line-utilities", "command-line-interface"]
 exclude = ["demos/*"]
 
