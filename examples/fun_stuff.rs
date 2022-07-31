@@ -9,7 +9,7 @@ fn main() {
     rest(0.5);
 
     // basic
-    snailprint_d("🐌 Welcome, traveller. This is snailshell. :) 🫰\n", 1.5);
+    snailprint_d("🐌 Welcome, traveller. This is snailshell. :) 💖\n", 1.5);
     snailprint_d("It is a tiny library for animating text output from \nterminal applications.".green(), 2.0);
     snailprint("It is super simple to use!".magenta());
     dots();

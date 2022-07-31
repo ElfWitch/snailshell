@@ -16,6 +16,7 @@ path = "src/bin/snailshell.rs"
 
 [dependencies]
 clap = {version="3.2.15", features=["derive"]}
+unicode-segmentation = "1.9.0"
 
 [dev-dependencies]
 crossterm = "0.24.0"
