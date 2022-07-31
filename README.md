@@ -67,7 +67,15 @@ OPTIONS:
 ```
 
 ### Example
+Simple:
+
 `snailshell "text you want to animate"`
+
+Animates the contents of textfile over 2 seconds:
+
+`cat textfile | snailshell -d 2.0`
+
+If you just run 'snailshell' without any any arguments, it will expect text to be piped into it and won't respond to newlines. Just press Ctrl-C.
 
 ### 📖 License
 ___
