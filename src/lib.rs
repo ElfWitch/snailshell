@@ -104,16 +104,9 @@ fn format_graphemes<T: Display>(text: T) -> Vec<String>{
         .collect::<Vec<String>>()
 }
 
-pub fn test(){
-    let duration = 1.0;
-    let time = Instant::now();
-    snailprint_d("...", duration);
-    println!("Expected: {} Actual: {}", duration, time.elapsed().as_secs_f32());
-}
-
 /// Animates text through the terminal.
 /// Decoupled so grapheme cluster separation only has to occur once.
-/// Duration is calculated from grapheme clusters which makes each char render at the same speed.
+/// Duration is calculated from grapheme clusters which makes each cluster render at the same speed.
 fn snailprint_internal(mut graphemes: Vec<String>, duration: f32){
     let time = Instant::now();
 
