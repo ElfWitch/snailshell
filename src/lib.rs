@@ -27,7 +27,6 @@
 //!
 //! ### Refresh Rate
 //! You can change the refresh rate with [set_snail_fps].
-//! Call it once at the beginning of your program.
 //! This is entirely optional.
 //!
 //! Default fps is 60.
@@ -51,9 +50,6 @@ static FPS: Lazy<RwLock<u8>> = Lazy::new(||{
 });
 
 /// Sets the global fps of animated text.
-///
-/// # Safety
-/// This is only meant to be used once at the start of your program as internally it mutates a static variable.
 pub fn set_snail_fps(fps: u8){
     if let Ok(mut f) = FPS.write(){
         *f = fps;

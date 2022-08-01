@@ -1,6 +1,6 @@
 [package]
 name = "snailshell"
-version = "0.3.0"
+version = "0.3.1"
 edition = "2021"
 description = "Library for making terminal text display with pleasant RPG-style animations."
 license = "MIT"
