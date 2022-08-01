@@ -36,6 +36,8 @@ use std::fmt::Display;
 use std::io::{stdout, Write};
 use std::sync::RwLock;
 use std::thread::sleep;
+use std::time::Instant;
+use unicode_segmentation::UnicodeSegmentation;
 use once_cell::sync::Lazy;
 
 
@@ -78,10 +80,9 @@ pub fn snailprint<T: Display>(text: T){
 /// snailprint_s("this will print 50 characters per second", 50.0);
 /// ```
 pub fn snailprint_s<T: Display>(text: T, speed: f32){
-    let s = format!("{}", text);
-
-    // duration is calculated from amount of ' ' whitespace in formatted text
-    snailprint_d(text, s.split(' ').count() as f32 / speed);
+    let s = format_graphemes(text);
+    let l = s.len();
+    snailprint_internal(s, l as f32 / speed);
 }
 
 /// Animate text with custom fixed duration. If you are printing a message with 10 characters and
@@ -95,11 +96,27 @@ pub fn snailprint_s<T: Display>(text: T, speed: f32){
 ///
 ///
 pub fn snailprint_d<T: Display>(text: T, duration: f32){
+    let mut graphemes = format_graphemes(text);
+    snailprint_internal(graphemes, duration);
+}
+
+/// formats Display type to vec of grapheme clusters
+fn format_graphemes<T: Display>(text: T) -> Vec<String>{
     let s = format!("{}", text);
+    s
+        .graphemes(true)
+        .map(|g| g.to_string())
+        .rev()
+        .collect::<Vec<String>>()
+}
 
-    let mut chars = s.chars().rev().collect::<Vec<char>>();
+/// Animates text through the terminal.
+/// Decoupled so grapheme cluster separation only has to occur once.
+/// Duration is calculated from grapheme clusters which makes each cluster render at the same speed.
+fn snailprint_internal(mut graphemes: Vec<String>, duration: f32){
+    let time = Instant::now();
 
-    let char_len = chars.len();
+    let graph_len = graphemes.len();
 
     let fps = match FPS.read() {
         Ok(f) => {
@@ -112,16 +129,19 @@ pub fn snailprint_d<T: Display>(text: T, duration: f32){
 
     let delta = 1.0 / fps;
 
-    let mut percentage = 0.0;
-    while !chars.is_empty(){
-        let char_targ =  (char_len as f32 * percentage) as usize;
+    'outer:while !graphemes.is_empty(){
+        let char_targ = (graph_len as f32 * time.elapsed().as_secs_f32() / duration) as usize;
 
-        while char_targ > char_len - chars.len() && !chars.is_empty(){
-            print!("{}", chars.pop().unwrap());
-            stdout().flush().unwrap();
+        while char_targ > graph_len - graphemes.len(){
+            if !graphemes.is_empty(){
+                print!("{}", graphemes.pop().unwrap());
+                stdout().flush().unwrap();
+            }else{
+                // this is so sleep() is not called when this loop breaks
+                break 'outer;
+            }
         }
         sleep(std::time::Duration::from_secs_f32(delta));
-        percentage += delta / duration;
     }
-    println!()
+    println!();
 }

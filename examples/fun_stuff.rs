@@ -9,7 +9,7 @@ fn main() {
     rest(0.5);
 
     // basic
-    snailprint_d("🐌 Welcome, traveller. This is snailshell. :) 🫰\n", 1.5);
+    snailprint_d("🐌 Welcome, traveller. This is snailshell. :) 💖\n", 1.5);
     snailprint_d("It is a tiny library for animating text output from \nterminal applications.".green(), 2.0);
     snailprint("It is super simple to use!".magenta());
     dots();
@@ -44,6 +44,12 @@ fn main() {
     snailprint_s("- this message right here".cyan(), 9.0);
     rest(0.5);
     snailprint_s("- will take as long per character as this one".cyan(), 9.0);
+    dots();
+    rest(1.0);
+
+    // wargames
+    clear_console();
+    snailprint("GREETINGS PROFESSOR FALKEN\n\nHELLO\n\nA STRANGE GAME.\n\nTHE ONLY WINNING MOVE IS NOT TO PLAY.\n\nHOW ABOUT A NICE GAME OF CHESS?".blue());
     dots();
     rest(1.0);
 
