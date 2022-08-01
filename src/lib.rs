@@ -89,7 +89,7 @@ pub fn snailprint_s<T: Display>(text: T, speed: f32) {
 ///
 ///
 pub fn snailprint_d<T: Display>(text: T, duration: f32) {
-    let mut graphemes = format_graphemes(text);
+    let graphemes = format_graphemes(text);
     snailprint_internal(graphemes, duration);
 }
 
