@@ -49,7 +49,7 @@ fn main() {
 
     // wargames
     clear_console();
-    snailprint("GREETINGS PROFESSOR FALKEN\n\nHELLO\n\nA STRANGE GAME.\n\nTHE ONLY WINNING MOVE IS NOT TO PLAY.\n\nHOW ABOUT A NICE GAME OF CHESS?".blue());
+    snailprint_d("GREETINGS PROFESSOR FALKEN\n\nHELLO\n\nA STRANGE GAME.\n\nTHE ONLY WINNING MOVE IS NOT TO PLAY.\n\nHOW ABOUT A NICE GAME OF CHESS?".blue(), 5.0);
     dots();
     rest(1.0);
 
