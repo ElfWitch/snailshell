@@ -26,7 +26,7 @@
 //! ```
 //!
 //! ### Refresh Rate
-//! You can change the refresh rate with [set_snail_fps].
+//! You can change the refresh rate with [`set_snail_fps`].
 //! This is entirely optional.
 //!
 //! Default fps is 60.
@@ -65,7 +65,7 @@ pub fn snailprint<T: Display>(text: T) {
 }
 
 /// Animate text at a constant speed of chars per second. This will animate so that each character
-/// printed takes a predictable speed, unlike [snailprint_d](snailprint_d()).
+/// printed takes a predictable speed, unlike [`snailprint_d`](snailprint_d()).
 /// ### Example
 /// ```
 /// # use snailshell::snailprint_s;
@@ -97,7 +97,7 @@ pub fn snailprint_d<T: Display>(text: T, duration: f32) {
 fn format_graphemes<T: Display>(text: T) -> Vec<String> {
     let s = format!("{}", text);
     s.graphemes(true)
-        .map(|g| g.to_string())
+        .map(ToString::to_string)
         .rev()
         .collect::<Vec<String>>()
 }
@@ -111,7 +111,7 @@ fn snailprint_internal(mut graphemes: Vec<String>, duration: f32) {
     let graph_len = graphemes.len();
 
     let fps = match FPS.read() {
-        Ok(f) => *f as f32,
+        Ok(f) => f32::from(*f),
         Err(_) => 60.0,
     };
 
