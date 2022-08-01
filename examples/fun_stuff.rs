@@ -10,7 +10,10 @@ fn main() {
 
     // basic
     snailprint_d("🐌 Welcome, traveller. This is snailshell. :) 💖\n", 1.5);
-    snailprint_d("It is a tiny library for animating text output from \nterminal applications.".green(), 2.0);
+    snailprint_d(
+        "It is a tiny library for animating text output from \nterminal applications.".green(),
+        2.0,
+    );
     snailprint("It is super simple to use!".magenta());
     dots();
     rest(1.0);
@@ -60,17 +63,16 @@ fn main() {
     println!()
 }
 
-
-pub fn clear_console(){
+pub fn clear_console() {
     print!("\x1B[2J\x1B[1;1H");
 }
 
 /// print waiting dots
-fn dots(){
+fn dots() {
     snailprint_d("...", 1.5);
 }
 
-fn rest(secs: f32){
+fn rest(secs: f32) {
     use std::thread::sleep;
     use std::time::Duration;
 
