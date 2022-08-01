@@ -34,7 +34,9 @@
 
 use std::fmt::Display;
 use std::io::{stdout, Write};
+use std::sync::RwLock;
 use std::thread::sleep;
+use once_cell::sync::Lazy;
 
 
 /// refresh rate of animated text
@@ -42,14 +44,18 @@ use std::thread::sleep;
 /// Text will only flush stdout buffer when characters should be updated.
 /// Think of this as maximum FPS.
 ///
-static mut FPS: u8 = 60;
+static FPS: Lazy<RwLock<u8>> = Lazy::new(||{
+    RwLock::new(60)
+});
 
 /// Sets the global fps of animated text.
 ///
 /// # Safety
 /// This is only meant to be used once at the start of your program as internally it mutates a static variable.
 pub fn set_snail_fps(fps: u8){
-    unsafe {FPS = fps};
+    if let Ok(mut f) = FPS.write(){
+        *f = fps;
+    }
 }
 
 /// Animate text with a fixed duration of two seconds.
@@ -95,9 +101,16 @@ pub fn snailprint_d<T: Display>(text: T, duration: f32){
 
     let char_len = chars.len();
 
-    // Unsafe only because FPS is mutable.
-    // Won't be a problem at all if you only call set_fps() once or never.
-    let delta = 1.0 / unsafe{FPS} as f32;
+    let fps = match FPS.read() {
+        Ok(f) => {
+            *f as f32
+        }
+        Err(_) => {
+            60.0
+        }
+    };
+
+    let delta = 1.0 / fps;
 
     let mut percentage = 0.0;
     while !chars.is_empty(){
